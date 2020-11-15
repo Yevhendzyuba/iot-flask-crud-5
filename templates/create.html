@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS CRUD App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('get_all_cosmetology_builds')}}">My CosmetologyBuilds</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('create_cosmetology_build') }}">Create CosmetologyBuild</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" id="myInput" placeholder="Type something..." onkeyup="searchFunction()" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <section class="create__section">
+        <form class="main__form" name="myForm" onsubmit="checkTypeInputValue()" method="POST">
+            <h3 class="main__form-title">Create CosmetologyBuild</h3>
+            <div class="form-group">
+                <label for="name">Name Of Cosmetology</label>
+                <input type="text" class="form-control" id="name" name="name" maxlength="60" required>
+            </div>
+            <div class="form-group">
+                <label for="seats">Appoinment For</label>
+                <input type="text" class="form-control" id="appoinment" name="appoinment" maxlength="15" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Produce Country</label>
+                <input type="text" class="form-control" id="produce_country" name="produce_country" maxlength="15" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Capacity In Ml</label>
+                <input type="text" class="form-control" id="capacity_in_ml" name="capacity_in_ml" maxlength="10" required>
+            </div>
+            <div class="form-group">
+                <label for="scale">Price In Uah</label>
+                <input type="text" class="form-control" id="price_in_uah" name="price_in_uah" maxlength="10" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    </section>
+    <script src="../js/cr&ed.js"></script>
+</body>
+
+</html>
