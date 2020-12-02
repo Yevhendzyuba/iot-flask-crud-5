@@ -4,6 +4,7 @@ from marshmallow import fields
 from marshmallow_sqlalchemy import ModelSchema
 from flask_sqlalchemy import SQLAlchemy
 
+
 with open("secret.json") as f:
     SECRET = json.load(f)
 
@@ -14,17 +15,20 @@ DB_URI = "mysql+mysqlconnector://{user}:{password}@{host}:{port}/{db}".format(
     port=SECRET["port"],
     db=SECRET["db"])
 
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
+#app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:2029evgen@127.0.0.1:3306/webdatab5'
 db = SQLAlchemy(app)
+
 
 
 class CosmetologyBuild(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name_of_cosmetology = db.Column(db.String(30), unique=False)
     appoinment_for = db.Column(db.Integer, unique=False)
-    produce_country = db.Column(db.String, unique=False)
+    produce_country = db.Column(db.String(30), unique=False)
     capacity_in_ml = db.Column(db.Integer, unique=False)
     price_in_uah = db.Column(db.Integer, unique=False)
 
@@ -53,7 +57,7 @@ cosmetology_builds_schema = CosmetologyBuildSchema(many=True)
 def get_all_cosmetology_builds():
     all_cosmetology_builds = CosmetologyBuild.query.all()
     cosmetology_builds = cosmetology_builds_schema.dump(all_cosmetology_builds)
-    return render_template("index.html", cosmetology_builds=cosmetology_builds)
+    return render_template("index.html",cosmetology_builds=cosmetology_builds)
 
 
 
